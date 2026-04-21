@@ -1,0 +1,11 @@
+<div class="app-counter-container">
+    <div class="app-counter">
+        <!-- CHILD COMPONENTS GOES HERE -->
+         <app-counter-value [counter]="counter"></app-counter-value>
+         <app-counter-button (decrement)="onDecrement()" 
+         (increment)="onIncrement()"
+         (reset)="reset()"
+         >
+        </app-counter-button>
+    </div>
+</div>
