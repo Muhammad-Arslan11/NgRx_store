@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-counter-value',
@@ -6,7 +8,14 @@ import { Component, Input } from '@angular/core';
   templateUrl: './counter-value.html',
   styleUrl: './counter-value.css',
 })
-export class CounterValue {
-  @Input() counter!:number;
+export class CounterValue implements OnInit{
+  constructor(private store: Store<{ counter: { count: number } }>) {}
+  count:number = 0;
 
+  ngOnInit(){
+    console.log('oninit');
+    this.store.pipe(select('counter')).subscribe((state)=>{
+       this.count = state.count;
+    });
+  }
 }
